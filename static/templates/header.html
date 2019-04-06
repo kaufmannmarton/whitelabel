@@ -1,0 +1,45 @@
+{{define "header"}}
+<header class="relative">
+    <img alt="Danika Mori" class="w-full" style="max-height: 650px; object-fit: cover;"
+        srcset="{{.Artist.HeaderImage}}" />
+    <a href="/" aria-label="Go to home page" class="no-underline text-lobster text-white text-5xl py-4 inline pr-6 pl-12 absolute"
+        style="bottom: 8vw; background-color: rgba(0, 0, 0, .7);">
+        {{.Artist.Name}}</a>
+</header>
+<section class="bg-pink py-2 mb-6">
+    <div class="container mx-auto flex justify-around flex-wrap">
+        {{if .Artist.Twitter}}
+        <a aria-label="Visit twitter page" href="{{.Artist.Twitter}}" rel="noopener" target="_blank"
+            class="no-underline">
+            <img alt="Twitter logo" width="32" src="/static/images/logos/twitter.webp" />
+        </a>
+        {{end}}
+
+        {{if .Artist.Facebook}}
+        <a aria-label="Visit facebok page" href="{{.Artist.Facebook}}" rel="noopener" target="_blank"
+            class="no-underline">
+            <img alt="Facebook logo" width="32" src="/static/images/logos/facebook.webp" />
+        </a>
+        {{end}}
+
+        {{if .Artist.Instagram}}
+        <a aria-label="Visit instagram page" href="{{.Artist.Instagram}}" rel="noopener" target="_blank"
+            class="no-underline">
+            <img alt="Instagram logo" width="32" src="/static/images/logos/instagram.webp" />
+        </a>
+        {{end}}
+
+        {{if .Artist.Reddit}}
+        <a aria-label="Visit reddit page" href="{{.Artist.Reddit}}" rel="noopener" target="_blank" class="no-underline">
+            <img alt="Reddit logo" width="32" src="/static/images/logos/reddit.webp" />
+        </a>
+        {{end}}
+
+        {{if .Artist.Gfycat}}
+        <a aria-label="Visit gfycat page" href="{{.Artist.Gfycat}}" rel="noopener" target="_blank" class="no-underline">
+            <img alt="Gfycat logo" width="32" src="/static/images/logos/gfycat.webp" />
+        </a>
+        {{end}}
+    </div>
+</section>
+{{end}}

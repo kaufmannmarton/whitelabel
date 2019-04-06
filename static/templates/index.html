@@ -1,0 +1,105 @@
+{{define "body"}}
+<article class="container md:px-0 px-3 mx-auto mt-8">
+    <header class="text-4xl text-grey-darkest mx-auto mb-6 text-lobster">Videos
+    </header>
+    <section
+        style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr) [col-start]); grid-column-gap: 40px; grid-row-gap: 60px;">
+        {{range .Artist.Videos}}
+        <div class="rounded overflow-hidden shadow">
+            <img alt="{{.Title}}" data-src="{{ .Thumb }}" class="lazyload w-full" />
+            <div class="px-6 py-4">
+                <a href="{{.URL}}" target="_blank"
+                    class="font-bold text-xl text-grey-darkest no-underline">{{ .Title }}</a>
+            </div>
+            <div class="px-6 pb-4">
+                {{ range .Categories }}
+                <span class="inline-block bg-pink rounded-full px-3 py-1 text-sm font-semibold text-white mb-2 mr-2">
+                    {{ .Name }}
+                </span>
+                {{ end }}
+            </div>
+        </div>
+        {{end}}
+    </section>
+    <section class="flex justify-center mt-8">
+        <a href="{{.Artist.Pornhub}}" rel="noopener" target="_blank"
+            class="no-underline bg-transparent hover:bg-pink text-pink font-semibold hover:text-white inline-block text-xl py-3 px-5 border border-pink hover:border-transparent rounded">
+            View more
+        </a>
+    </section>
+</article>
+
+<article class="container md:px-0 px-3 mx-auto mt-8">
+    <header class="text-4xl text-grey-darkest mx-auto mb-6 text-lobster">Photos
+    </header>
+    <section
+        style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr) [col-start]); grid-column-gap: 40px; grid-row-gap: 60px;">
+        {{range $image := .Artist.Images}}
+        <img alt="{{$.Artist.Name}}" data-src="{{ $image }}" class="lazyload w-full" />
+        {{end}}
+    </section>
+    {{if .Artist.Instagram}}
+    <section class="flex justify-center mt-8">
+        <a href="{{.Artist.Instagram}}" rel="noopener" target="_blank"
+            class="no-underline bg-transparent hover:bg-pink text-pink font-semibold hover:text-white inline-block text-xl py-3 px-5 border border-pink hover:border-transparent rounded">
+            View more
+        </a>
+    </section>
+    {{end}}
+</article>
+
+<article class="container md:px-0 px-3 mx-auto mt-8">
+    <header class="text-4xl text-grey-darkest mx-auto mb-6 text-lobster">Where to find me
+    </header>
+    <section class="flex flex-wrap justify-center">
+        {{if .Artist.Fancentro}}
+        <a href="{{.Artist.Fancentro}}" rel="noopener" target="_blank" class="no-underline">
+            <img alt="Visit fancentro page" style="width: 240px; height: 120px; object-fit: contain;"
+                data-src="/static/images/banners/fancentro.webp" class="lazyload" />
+        </a>
+        {{end}}
+
+        {{if .Artist.ManyVids}}
+        <a href="{{.Artist.ManyVids}}" rel="noopener" target="_blank" class="no-underline">
+            <img alt="Visit manyvids page" style="width: 240px; height: 120px; object-fit: contain;"
+                data-src="/static/images/banners/manyvids.webp" class="lazyload" />
+        </a>
+        {{end}}
+
+        {{if .Artist.Modelhub}}
+        <a href="{{.Artist.Modelhub}}" rel="noopener" target="_blank" class="no-underline">
+            <img alt="Visit modelhub page" style="width: 240px; height: 120px; object-fit: contain;"
+                data-src="/static/images/banners/modelhub.webp" class="lazyload" />
+        </a>
+        {{end}}
+
+        {{if .Artist.Pornhub}}
+        <a href="{{.Artist.Pornhub}}" rel="noopener" target="_blank" class="no-underline">
+            <img alt="Visit pornhub page" style="width: 240px; height: 120px; object-fit: contain;"
+                data-src="/static/images/banners/pornhub.webp" class="lazyload" />
+        </a>
+        {{end}}
+
+        {{if .Artist.YouPorn}}
+        <a href="{{.Artist.YouPorn}}" rel="noopener" target="_blank" class="no-underline">
+            <img alt="Visit youpron page" style="width: 240px; height: 120px; object-fit: contain;"
+                data-src="/static/images/banners/youporn.webp" class="lazyload" />
+        </a>
+        {{end}}
+
+        {{if .Artist.RedTube}}
+        <a href="{{.Artist.RedTube}}" rel="noopener" target="_blank" class="no-underline">
+            <img alt="Visit redtube page" style="width: 240px; height: 120px; object-fit: contain;"
+                data-src="/static/images/banners/redtube.webp" class="lazyload" />
+        </a>
+        {{end}}
+
+        {{if .Artist.OnlyFans}}
+        <a href="{{.Artist.OnlyFans}}" rel="noopener" target="_blank" class="no-underline">
+            <img alt="Visit onlyfans page" style="width: 240px; height: 120px; object-fit: contain;"
+                data-src="/static/images/banners/onlyfans.webp" class="lazyload" />
+        </a>
+        {{end}}
+    </section>
+</article>
+{{end}}
