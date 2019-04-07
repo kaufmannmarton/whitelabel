@@ -2,7 +2,6 @@ package main
 
 import (
 	"encoding/json"
-	"hubtraffic/models"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -10,6 +9,7 @@ import (
 	"path/filepath"
 	"text/template"
 	"time"
+	"whitelabel/models"
 
 	"github.com/gorilla/mux"
 )

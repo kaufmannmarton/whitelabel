@@ -1,4 +1,4 @@
-module hubtraffic
+module whitelabel
 
 go 1.12
 
