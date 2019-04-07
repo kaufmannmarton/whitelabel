@@ -6,9 +6,11 @@
         style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr) [col-start]); grid-column-gap: 40px; grid-row-gap: 60px;">
         {{range .Artist.Videos}}
         <div class="rounded overflow-hidden shadow">
-            <img alt="{{.Title}}" data-src="{{ .Thumb }}" class="lazyload w-full" />
+            <a class="no-underline" href="{{.URL}}" target="_blank" aria-label="{{ .Title }}">
+                <img alt="{{.Title}}" data-src="{{ .Thumb }}" class="lazyload w-full" />
+            </a>
             <div class="px-6 py-4">
-                <a href="{{.URL}}" target="_blank"
+                <a href="{{.URL}}" target="_blank" aria-label="{{ .Title }}"
                     class="font-bold text-xl text-grey-darkest no-underline">{{ .Title }}</a>
             </div>
             <div class="px-6 pb-4">
