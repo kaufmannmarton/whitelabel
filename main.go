@@ -42,7 +42,7 @@ func getArtistPornhubVideos(artist string) ([]models.Video, error) {
 	return data["videos"][0:9], nil
 }
 
-func index(w http.ResponseWriter, r *http.Request) {
+func indexHandler(w http.ResponseWriter, r *http.Request) {
 	videos, err := getArtistPornhubVideos("danika-mori")
 
 	if err != nil {
@@ -65,7 +65,7 @@ func index(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func contact(w http.ResponseWriter, r *http.Request) {
+func contactHandler(w http.ResponseWriter, r *http.Request) {
 	a := artistCollection["danika-mori"]
 
 	tmpl := renderTemplate("contact.html")
@@ -81,17 +81,23 @@ func contact(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func main() {
-	loadArtists()
-
+func fileHander(w http.ResponseWriter, r *http.Request) {
 	fs := http.FileServer(http.Dir("static/assets"))
 	fh := http.StripPrefix("/static/", fs)
 
+	w.Header().Set("Cache-Control", "must-revalidate, max-age=604800")
+
+	fh.ServeHTTP(w, r)
+}
+
+func main() {
+	loadArtists()
+
 	r := mux.NewRouter()
 
-	r.HandleFunc("/", index)
-	r.HandleFunc("/contact", contact)
-	r.PathPrefix("/static/").Handler(fh)
+	r.HandleFunc("/", indexHandler)
+	r.HandleFunc("/contact", contactHandler)
+	r.PathPrefix("/static/").HandlerFunc(fileHander)
 
 	http.Handle("/", r)
 
