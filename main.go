@@ -17,7 +17,7 @@ import (
 var artistCollection map[string]models.Artist
 
 func getArtistPornhubVideos(artist string) ([]models.Video, error) {
-	resp, err := http.Get("http://www.pornhub.com/webmasters/search?ordering=newest&phrase[]=" + artist)
+	resp, err := http.Get("http://www.pornhub.com/webmasters/search?ordering=mostviewed&phrase[]=" + artist)
 
 	if err != nil {
 		log.Println(err)
