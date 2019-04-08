@@ -1,6 +1,7 @@
 package models
 
 type Artist struct {
+	ID          string    `json:"id"`
 	Name        string    `json:"name"`
 	HeaderImage string    `json:"header-image"`
 	Description string    `json:"description"`

@@ -14,7 +14,7 @@ import (
 	"github.com/gorilla/mux"
 )
 
-var artistCollection map[string]models.Artist
+var artistCollection map[string]*models.Artist
 
 func getArtistPornhubVideos(artist string) ([]models.Video, error) {
 	resp, err := http.Get("http://www.pornhub.com/webmasters/search?ordering=mostviewed&phrase[]=" + artist)
@@ -43,6 +43,13 @@ func getArtistPornhubVideos(artist string) ([]models.Video, error) {
 }
 
 func indexHandler(w http.ResponseWriter, r *http.Request) {
+	a := artistCollection[r.Host]
+
+	if a == nil {
+		http.NotFound(w, r)
+		return
+	}
+
 	videos, err := getArtistPornhubVideos("danika-mori")
 
 	if err != nil {
@@ -51,11 +58,10 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 
 	tmpl := renderTemplate("index.html")
 
-	a := artistCollection["danika-mori"]
 	a.Videos = &videos
 
 	err = tmpl.ExecuteTemplate(w, "layout", struct {
-		Artist models.Artist
+		Artist *models.Artist
 	}{
 		Artist: a,
 	})
@@ -66,12 +72,17 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func contactHandler(w http.ResponseWriter, r *http.Request) {
-	a := artistCollection["danika-mori"]
+	a := artistCollection[r.Host]
+
+	if a == nil {
+		http.NotFound(w, r)
+		return
+	}
 
 	tmpl := renderTemplate("contact.html")
 
 	err := tmpl.ExecuteTemplate(w, "layout", struct {
-		Artist models.Artist
+		Artist *models.Artist
 	}{
 		Artist: a,
 	})
@@ -116,7 +127,16 @@ func main() {
 }
 
 func loadArtists() {
-	artists, err := ioutil.ReadFile("artists.json")
+	fn := "artists.local.json"
+
+	// If artists.local.json exists use that, otherwise default to artists.json
+	_, err := os.Stat(fn)
+
+	if err != nil && os.IsNotExist(err) {
+		fn = "artists.json"
+	}
+
+	artists, err := ioutil.ReadFile(fn)
 
 	if err != nil {
 		panic(err)
