@@ -30,6 +30,13 @@
         </a>
         {{end}}
 
+        {{if .Artist.YouTube}}
+        <a aria-label="Visit youtube page" href="{{.Artist.YouTube}}" rel="noopener" target="_blank"
+            class="no-underline">
+            <img alt="YouTube logo" width="32" src="/static/images/logos/youtube.webp" />
+        </a>
+        {{end}}
+
         {{if .Artist.Reddit}}
         <a aria-label="Visit reddit page" href="{{.Artist.Reddit}}" rel="noopener" target="_blank" class="no-underline">
             <img alt="Reddit logo" width="32" src="/static/images/logos/reddit.webp" />
