@@ -12,6 +12,7 @@ type Artist struct {
 	Twitter   *string `json:"twitter"`
 	Facebook  *string `json:"facebook"`
 	Gfycat    *string `json:"gfycat"`
+	YouTube   *string `json:"youtube"`
 
 	Fancentro *string `json:"fancentro"`
 	ManyVids  *string `json:"manyvids"`
