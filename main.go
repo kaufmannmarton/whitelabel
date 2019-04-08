@@ -95,9 +95,9 @@ func main() {
 
 	r := mux.NewRouter()
 
-	r.HandleFunc("/", indexHandler)
-	r.HandleFunc("/contact", contactHandler)
-	r.PathPrefix("/static/").HandlerFunc(fileHander)
+	r.HandleFunc("/", indexHandler).Methods("GET")
+	r.HandleFunc("/contact", contactHandler).Methods("GET")
+	r.PathPrefix("/static/").HandlerFunc(fileHander).Methods("GET")
 
 	http.Handle("/", r)
 
