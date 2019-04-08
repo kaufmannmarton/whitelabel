@@ -22,6 +22,7 @@ type Artist struct {
 	YouPorn   *string `json:"youporn"`
 	Modelhub  *string `json:"modelhub"`
 	XHamster  *string `json:"xhamster"`
+	XVideos   *string `json:"xvideos"`
 
 	Videos *[]Video
 }
