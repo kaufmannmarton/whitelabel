@@ -102,6 +102,20 @@
                 data-src="/static/images/banners/onlyfans.webp" class="lazyload" />
         </a>
         {{end}}
+
+        {{if .Artist.XHamster}}
+        <a href="{{.Artist.XHamster}}" rel="noopener" target="_blank" class="no-underline">
+            <img alt="Visit xhamster page" style="width: 240px; height: 120px; object-fit: contain;"
+                data-src="/static/images/banners/xhamster.webp" class="lazyload" />
+        </a>
+        {{end}}
+
+        {{if .Artist.XVideos}}
+        <a href="{{.Artist.XVideos}}" rel="noopener" target="_blank" class="no-underline">
+            <img alt="Visit xvideos page" style="width: 240px; height: 120px; object-fit: contain;"
+                data-src="/static/images/banners/xvideos.webp" class="lazyload" />
+        </a>
+        {{end}}
     </section>
 </article>
 {{end}}
