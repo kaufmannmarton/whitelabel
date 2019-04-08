@@ -50,7 +50,7 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	videos, err := getArtistPornhubVideos("danika-mori")
+	videos, err := getArtistPornhubVideos(a.ID)
 
 	if err != nil {
 		videos = make([]models.Video, 0)
