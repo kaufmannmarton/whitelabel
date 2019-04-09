@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
+	"regexp"
 	"text/template"
 	"time"
 	"whitelabel/models"
@@ -15,6 +16,14 @@ import (
 )
 
 var artistCollection map[string]*models.Artist
+
+func getArtistIDFromHost(h string) string {
+	re := regexp.MustCompile(`(?m)((www\.|)(.*))\.com`)
+
+	m := re.FindStringSubmatch(h)
+
+	return m[3]
+}
 
 func getArtistPornhubVideos(artist string) ([]models.Video, error) {
 	resp, err := http.Get("http://www.pornhub.com/webmasters/search?ordering=mostviewed&phrase[]=" + artist)
@@ -43,8 +52,10 @@ func getArtistPornhubVideos(artist string) ([]models.Video, error) {
 }
 
 func indexHandler(w http.ResponseWriter, r *http.Request) {
+	aid := getArtistIDFromHost(r.Host)
 	log.Println(r.Host)
-	a := artistCollection[r.Host]
+	log.Println(aid)
+	a := artistCollection[aid]
 
 	if a == nil {
 		http.NotFound(w, r)
@@ -73,8 +84,10 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func contactHandler(w http.ResponseWriter, r *http.Request) {
+	aid := getArtistIDFromHost(r.Host)
 	log.Println(r.Host)
-	a := artistCollection[r.Host]
+	log.Println(aid)
+	a := artistCollection[aid]
 
 	if a == nil {
 		http.NotFound(w, r)
