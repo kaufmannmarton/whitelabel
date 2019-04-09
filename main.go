@@ -53,8 +53,6 @@ func getArtistPornhubVideos(artist string) ([]models.Video, error) {
 
 func indexHandler(w http.ResponseWriter, r *http.Request) {
 	aid := getArtistIDFromHost(r.Host)
-	log.Println(r.Host)
-	log.Println(aid)
 	a := artistCollection[aid]
 
 	if a == nil {
@@ -85,8 +83,6 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 
 func contactHandler(w http.ResponseWriter, r *http.Request) {
 	aid := getArtistIDFromHost(r.Host)
-	log.Println(r.Host)
-	log.Println(aid)
 	a := artistCollection[aid]
 
 	if a == nil {
