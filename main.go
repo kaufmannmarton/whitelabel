@@ -26,8 +26,7 @@ func getArtistIDFromHost(h string) string {
 }
 
 func indexHandler(w http.ResponseWriter, r *http.Request) {
-	// aid := getArtistIDFromHost(r.Host)
-	aid := "danika-mori"
+	aid := getArtistIDFromHost(r.Host)
 	a := artistCollection[aid]
 
 	if a == nil {
@@ -57,8 +56,7 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func contactHandler(w http.ResponseWriter, r *http.Request) {
-	// aid := getArtistIDFromHost(r.Host)
-	aid := "danika-mori"
+	aid := getArtistIDFromHost(r.Host)
 	a := artistCollection[aid]
 
 	if a == nil {
