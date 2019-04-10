@@ -13,14 +13,15 @@ type Artist struct {
 	Gfycat    *string `json:"gfycat"`
 	YouTube   *string `json:"youtube"`
 
-	Fancentro *string `json:"fancentro"`
-	ManyVids  *string `json:"manyvids"`
-	OnlyFans  *string `json:"onlyfans"`
-	RedTube   *string `json:"redtube"`
-	YouPorn   *string `json:"youporn"`
-	Modelhub  *string `json:"modelhub"`
-	XHamster  *string `json:"xhamster"`
-	XVideos   *string `json:"xvideos"`
+	Fancentro  *string `json:"fancentro"`
+	ManyVids   *string `json:"manyvids"`
+	OnlyFans   *string `json:"onlyfans"`
+	RedTube    *string `json:"redtube"`
+	YouPorn    *string `json:"youporn"`
+	Modelhub   *string `json:"modelhub"`
+	XHamster   *string `json:"xhamster"`
+	XVideos    *string `json:"xvideos"`
+	Clips4Sale *string `json:"clips4sale"`
 
 	Pornhub       *string `json:"pornhub"`
 	PornhubID     *string `json:"pornhub-id"`

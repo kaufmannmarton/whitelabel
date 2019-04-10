@@ -105,6 +105,13 @@
         </a>
         {{end}}
 
+        {{if .Artist.Clips4Sale}}
+        <a href="{{.Artist.Clips4Sale}}" rel="noopener" target="_blank" class="no-underline">
+            <img alt="Visit clips4sale page" style="width: 240px; height: 120px; object-fit: contain;"
+                data-src="/static/images/banners/clips4sale.webp" class="lazyload" />
+        </a>
+        {{end}}
+
         {{if .Artist.XHamster}}
         <a href="{{.Artist.XHamster}}" rel="noopener" target="_blank" class="no-underline">
             <img alt="Visit xhamster page" style="width: 240px; height: 120px; object-fit: contain;"
