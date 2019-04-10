@@ -4,6 +4,7 @@ type Artist struct {
 	Name        string    `json:"name"`
 	HeaderImage string    `json:"header-image"`
 	Description string    `json:"description"`
+	Keywords    string    `json:"keywords"`
 	Images      *[]string `json:"images"`
 
 	Instagram *string `json:"instagram"`
