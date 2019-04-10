@@ -1,7 +1,6 @@
 package models
 
 type Artist struct {
-	ID          string    `json:"id"`
 	Name        string    `json:"name"`
 	HeaderImage string    `json:"header-image"`
 	Description string    `json:"description"`
@@ -17,12 +16,13 @@ type Artist struct {
 	Fancentro *string `json:"fancentro"`
 	ManyVids  *string `json:"manyvids"`
 	OnlyFans  *string `json:"onlyfans"`
-	Pornhub   *string `json:"pornhub"`
 	RedTube   *string `json:"redtube"`
 	YouPorn   *string `json:"youporn"`
 	Modelhub  *string `json:"modelhub"`
 	XHamster  *string `json:"xhamster"`
 	XVideos   *string `json:"xvideos"`
 
-	Videos *[]Video
+	Pornhub       *string `json:"pornhub"`
+	PornhubID     *string `json:"pornhub-id"`
+	PornhubVideos []Video
 }

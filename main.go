@@ -3,13 +3,13 @@ package main
 import (
 	"encoding/json"
 	"io/ioutil"
-	"log"
 	"net/http"
 	"os"
 	"path/filepath"
 	"regexp"
 	"text/template"
 	"time"
+	"whitelabel/api"
 	"whitelabel/models"
 
 	"github.com/gorilla/mux"
@@ -25,34 +25,9 @@ func getArtistIDFromHost(h string) string {
 	return m[3]
 }
 
-func getArtistPornhubVideos(artist string) ([]models.Video, error) {
-	resp, err := http.Get("http://www.pornhub.com/webmasters/search?ordering=mostviewed&phrase[]=" + artist)
-
-	if err != nil {
-		log.Println(err)
-
-		return nil, err
-	}
-
-	defer resp.Body.Close()
-
-	body, err := ioutil.ReadAll(resp.Body)
-
-	if err != nil {
-		log.Println(err)
-
-		return nil, err
-	}
-
-	var data map[string][]models.Video
-
-	json.Unmarshal(body, &data)
-
-	return data["videos"][0:9], nil
-}
-
 func indexHandler(w http.ResponseWriter, r *http.Request) {
-	aid := getArtistIDFromHost(r.Host)
+	// aid := getArtistIDFromHost(r.Host)
+	aid := "danika-mori"
 	a := artistCollection[aid]
 
 	if a == nil {
@@ -60,17 +35,17 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	videos, err := getArtistPornhubVideos(a.ID)
+	if a.PornhubID != nil {
+		videos, err := api.GetMostViewedPornhubVideos(*a.PornhubID)
 
-	if err != nil {
-		videos = make([]models.Video, 0)
+		if err == nil {
+			a.PornhubVideos = videos[0:9]
+		}
 	}
 
 	tmpl := renderTemplate("index.html")
 
-	a.Videos = &videos
-
-	err = tmpl.ExecuteTemplate(w, "layout", struct {
+	err := tmpl.ExecuteTemplate(w, "layout", struct {
 		Artist *models.Artist
 	}{
 		Artist: a,
@@ -82,7 +57,8 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func contactHandler(w http.ResponseWriter, r *http.Request) {
-	aid := getArtistIDFromHost(r.Host)
+	// aid := getArtistIDFromHost(r.Host)
+	aid := "danika-mori"
 	a := artistCollection[aid]
 
 	if a == nil {

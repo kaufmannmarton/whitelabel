@@ -1,10 +1,11 @@
 {{define "body"}}
+{{if .Artist.PornhubVideos}}
 <article class="container md:px-0 px-3 mx-auto mt-8">
     <header class="text-4xl text-grey-darkest mx-auto mb-6 text-lobster">Videos
     </header>
     <section
         style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr) [col-start]); grid-column-gap: 40px; grid-row-gap: 60px;">
-        {{range .Artist.Videos}}
+        {{range .Artist.PornhubVideos}}
         <div class="rounded overflow-hidden shadow">
             <a class="no-underline" href="{{.URL}}" target="_blank" aria-label="{{ .Title }}">
                 <img alt="{{.Title}}" data-src="{{ .Thumb }}" class="lazyload w-full" />
@@ -30,6 +31,7 @@
         </a>
     </section>
 </article>
+{{end}}
 
 <article class="container md:px-0 px-3 mx-auto mt-8">
     <header class="text-4xl text-grey-darkest mx-auto mb-6 text-lobster">Photos
