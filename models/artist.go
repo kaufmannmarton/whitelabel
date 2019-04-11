@@ -18,7 +18,6 @@ type Artist struct {
 	ManyVids   *string `json:"manyvids"`
 	OnlyFans   *string `json:"onlyfans"`
 	RedTube    *string `json:"redtube"`
-	YouPorn    *string `json:"youporn"`
 	Modelhub   *string `json:"modelhub"`
 	XHamster   *string `json:"xhamster"`
 	XVideos    *string `json:"xvideos"`
@@ -27,4 +26,8 @@ type Artist struct {
 	Pornhub       *string `json:"pornhub"`
 	PornhubID     *string `json:"pornhub-id"`
 	PornhubVideos []Video
+
+	YouPorn       *string `json:"youporn"`
+	YouPornID     *string `json:"youporn-id"`
+	YouPornVideos []Video
 }

@@ -38,7 +38,15 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 		videos, err := api.GetMostViewedPornhubVideos(*a.PornhubID)
 
 		if err == nil {
-			a.PornhubVideos = videos[0:9]
+			a.PornhubVideos = videos[0:6]
+		}
+	}
+
+	if a.YouPornID != nil {
+		videos, err := api.GetMostViewedYouPornVideos(*a.YouPornID)
+
+		if err == nil {
+			a.YouPornVideos = videos[0:6]
 		}
 	}
 

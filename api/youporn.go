@@ -8,13 +8,13 @@ import (
 	"whitelabel/models"
 )
 
-const pornhubBaseURL = "http://www.pornhub.com/webmasters/search"
+const youpornBaseURL = "http://www.youporn.com/api/webmasters/search"
 
-func GetMostViewedPornhubVideos(pornhubID string) ([]models.Video, error) {
-	return getPornhubVideos(pornhubBaseURL + "?ordering=mostviewed&phrase[]=" + pornhubID)
+func GetMostViewedYouPornVideos(youpornID string) ([]models.Video, error) {
+	return getYouPornVideos(youpornBaseURL + "?ordering=mostviewed&search=" + youpornID)
 }
 
-func getPornhubVideos(url string) ([]models.Video, error) {
+func getYouPornVideos(url string) ([]models.Video, error) {
 	resp, err := http.Get(url)
 
 	if err != nil {
@@ -37,5 +37,5 @@ func getPornhubVideos(url string) ([]models.Video, error) {
 
 	json.Unmarshal(body, &data)
 
-	return data["videos"], nil
+	return data["video"], nil
 }
