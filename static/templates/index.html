@@ -52,6 +52,21 @@
     {{end}}
 </article>
 
+{{if .Artist.Twitter}}
+<article class="container md:px-0 px-3 mx-auto mt-8">
+    <header class="text-4xl text-grey-darkest mx-auto mb-6 text-lobster">Twitter</header>
+    <section class="flex flex-wrap">
+        <section class="flex-1 sm:mr-6 mr-0" style="min-width: 320px;">
+            <a class="twitter-timeline" href="{{.Artist.Twitter}}" data-tweet-limit="4" data-chrome="noheader nofooter"
+                data-width="600">Tweets by {{.Artist.Name}}</a>
+        </section>
+        <section class="mx-auto">
+            {{.Artist.TwitterPornhubWidget}}
+        </section>
+    </section>
+</article>
+{{end}}
+
 <article class="container md:px-0 px-3 mx-auto mt-8">
     <header class="text-4xl text-grey-darkest mx-auto mb-6 text-lobster">Where to find me
     </header>

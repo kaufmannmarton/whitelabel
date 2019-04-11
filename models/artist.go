@@ -9,10 +9,12 @@ type Artist struct {
 
 	Instagram *string `json:"instagram"`
 	Reddit    *string `json:"reddit"`
-	Twitter   *string `json:"twitter"`
 	Facebook  *string `json:"facebook"`
 	Gfycat    *string `json:"gfycat"`
 	YouTube   *string `json:"youtube"`
+
+	Twitter              *string `json:"twitter"`
+	TwitterPornhubWidget *string `json:"twitter-pornhub-widget"`
 
 	Fancentro  *string `json:"fancentro"`
 	ManyVids   *string `json:"manyvids"`
