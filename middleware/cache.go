@@ -3,24 +3,36 @@ package middleware
 import (
 	"net/http"
 	"net/http/httptest"
+	"strings"
 	"time"
 	"whitelabel/storage/memory"
 )
 
-func Cache(s *memory.Storage, handler func(w http.ResponseWriter, r *http.Request)) http.Handler {
-	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		sk := r.Host + "-" + r.RequestURI
+type CacheMiddleware struct {
+	Storage *memory.Storage
+}
 
-		content := s.Get(sk)
+func (m CacheMiddleware) Middleware(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+
+		// Ignore static assets
+		if strings.HasPrefix(r.RequestURI, "/static/") {
+			next.ServeHTTP(w, r)
+			return
+		}
+
+		key := r.Host + "-" + r.RequestURI
+
+		content := m.Storage.Get(key)
 
 		if content == nil {
 			recorder := httptest.NewRecorder()
 
-			handler(recorder, r)
+			next.ServeHTTP(recorder, r)
 
 			content = recorder.Body.Bytes()
 
-			s.Set(sk, content, time.Duration(time.Hour*24))
+			m.Storage.Set(key, content, time.Duration(time.Hour*24))
 		}
 
 		w.Write(content)

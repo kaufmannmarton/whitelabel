@@ -5,11 +5,8 @@ import (
 	"io/ioutil"
 	"net/http"
 	"os"
-	"path/filepath"
-	"regexp"
-	"text/template"
 	"time"
-	"whitelabel/api"
+	"whitelabel/handler"
 	"whitelabel/middleware"
 	"whitelabel/models"
 	"whitelabel/storage/memory"
@@ -17,102 +14,19 @@ import (
 	"github.com/gorilla/mux"
 )
 
-var artistCollection map[string]*models.Artist
-
-func getArtistIDFromHost(h string) string {
-	re := regexp.MustCompile(`(?m)((www\.|)(.*))\.com`)
-
-	m := re.FindStringSubmatch(h)
-
-	return m[3]
-}
-
-func indexHandler(w http.ResponseWriter, r *http.Request) {
-	aid := getArtistIDFromHost(r.Host)
-	a := artistCollection[aid]
-
-	if a == nil {
-		http.NotFound(w, r)
-		return
-	}
-
-	if a.PornhubID != nil {
-		videos, err := api.GetMostViewedPornhubVideos(*a.PornhubID)
-
-		if err == nil {
-			a.PornhubVideos = videos[0:9]
-		}
-	}
-
-	if a.YouPornID != nil {
-		videos, err := api.GetMostViewedYouPornVideos(*a.YouPornID)
-
-		if err == nil {
-			a.YouPornVideos = videos[0:9]
-		}
-	}
-
-	tmpl := renderTemplate("index.html")
-
-	err := tmpl.ExecuteTemplate(w, "layout", struct {
-		Artist *models.Artist
-	}{
-		Artist: a,
-	})
-
-	if err != nil {
-		panic(err)
-	}
-}
-
-func contactHandler(w http.ResponseWriter, r *http.Request) {
-	aid := getArtistIDFromHost(r.Host)
-	a := artistCollection[aid]
-
-	if a == nil {
-		http.NotFound(w, r)
-		return
-	}
-
-	tmpl := renderTemplate("contact.html")
-
-	err := tmpl.ExecuteTemplate(w, "layout", struct {
-		Artist *models.Artist
-	}{
-		Artist: a,
-	})
-
-	if err != nil {
-		panic(err)
-	}
-}
-
-func fileHander(w http.ResponseWriter, r *http.Request) {
-	fs := http.FileServer(http.Dir("static/assets"))
-	fh := http.StripPrefix("/static/", fs)
-
-	w.Header().Set("Cache-Control", "must-revalidate, max-age=604800")
-
-	fh.ServeHTTP(w, r)
-}
-
 func main() {
-	loadArtists()
-
+	artists := loadArtists()
 	s := memory.NewStorage()
 	r := mux.NewRouter()
 
-	r.Handle(
-		"/",
-		middleware.Cache(s, indexHandler),
-	).Methods("GET")
+	r.HandleFunc("/", handler.IndexHandler).Methods("GET")
+	r.HandleFunc("/contact", handler.ContactHandler).Methods("GET")
+	r.PathPrefix("/static/").HandlerFunc(handler.FileHandler).Methods("GET")
 
-	r.Handle(
-		"/contact",
-		middleware.Cache(s, contactHandler),
-	).Methods("GET")
+	cmw := middleware.CacheMiddleware{Storage: s}
+	amw := middleware.ArtistMiddleware{Artists: artists}
 
-	r.PathPrefix("/static/").HandlerFunc(fileHander).Methods("GET")
+	r.Use(amw.Middleware, cmw.Middleware)
 
 	http.Handle("/", r)
 
@@ -130,7 +44,7 @@ func main() {
 	}
 }
 
-func loadArtists() {
+func loadArtists() (artists map[string]*models.Artist) {
 	fn := "artists.local.json"
 
 	// If artists.local.json exists use that, otherwise default to artists.json
@@ -140,24 +54,17 @@ func loadArtists() {
 		fn = "artists.json"
 	}
 
-	artists, err := ioutil.ReadFile(fn)
+	b, err := ioutil.ReadFile(fn)
 
 	if err != nil {
 		panic(err)
 	}
 
-	err = json.Unmarshal(artists, &artistCollection)
+	err = json.Unmarshal(b, &artists)
 
 	if err != nil {
 		panic(err)
 	}
-}
 
-func renderTemplate(templateFile string) *template.Template {
-	layout := filepath.Join("static", "templates", "layout.html")
-	footer := filepath.Join("static", "templates", "footer.html")
-	header := filepath.Join("static", "templates", "header.html")
-	page := filepath.Join("static", "templates", templateFile)
-
-	return template.Must(template.ParseFiles(layout, header, footer, page))
+	return
 }
