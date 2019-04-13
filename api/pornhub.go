@@ -10,6 +10,10 @@ import (
 
 const pornhubBaseURL = "http://www.pornhub.com/webmasters/search"
 
+func GetLatestPornhubVideos(pornhubID string) ([]models.Video, error) {
+	return getPornhubVideos(pornhubBaseURL + "?ordering=newest&phrase[]=" + pornhubID)
+}
+
 func GetMostViewedPornhubVideos(pornhubID string) ([]models.Video, error) {
 	return getPornhubVideos(pornhubBaseURL + "?ordering=mostviewed&phrase[]=" + pornhubID)
 }

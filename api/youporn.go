@@ -10,6 +10,10 @@ import (
 
 const youpornBaseURL = "http://www.youporn.com/api/webmasters/search"
 
+func GetLatestYouPornVideos(youpornID string) ([]models.Video, error) {
+	return getYouPornVideos(youpornBaseURL + "?ordering=newest&search=" + youpornID)
+}
+
 func GetMostViewedYouPornVideos(youpornID string) ([]models.Video, error) {
 	return getYouPornVideos(youpornBaseURL + "?ordering=mostviewed&search=" + youpornID)
 }
