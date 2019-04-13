@@ -10,7 +10,9 @@ import (
 	"text/template"
 	"time"
 	"whitelabel/api"
+	"whitelabel/middleware"
 	"whitelabel/models"
+	"whitelabel/storage/memory"
 
 	"github.com/gorilla/mux"
 )
@@ -97,10 +99,19 @@ func fileHander(w http.ResponseWriter, r *http.Request) {
 func main() {
 	loadArtists()
 
+	s := memory.NewStorage()
 	r := mux.NewRouter()
 
-	r.HandleFunc("/", indexHandler).Methods("GET")
-	r.HandleFunc("/contact", contactHandler).Methods("GET")
+	r.Handle(
+		"/",
+		middleware.Cache(s, indexHandler),
+	).Methods("GET")
+
+	r.Handle(
+		"/contact",
+		middleware.Cache(s, contactHandler),
+	).Methods("GET")
+
 	r.PathPrefix("/static/").HandlerFunc(fileHander).Methods("GET")
 
 	http.Handle("/", r)
