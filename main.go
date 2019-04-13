@@ -9,21 +9,21 @@ import (
 	"whitelabel/handler"
 	"whitelabel/middleware"
 	"whitelabel/models"
-	"whitelabel/storage/memory"
+	"whitelabel/storage"
 
 	"github.com/gorilla/mux"
 )
 
 func main() {
 	artists := loadArtists()
-	s := memory.NewStorage()
+	ms := storage.NewMemoryStorage()
 	r := mux.NewRouter()
 
 	r.HandleFunc("/", handler.IndexHandler).Methods("GET")
 	r.HandleFunc("/contact", handler.ContactHandler).Methods("GET")
 	r.PathPrefix("/static/").HandlerFunc(handler.FileHandler).Methods("GET")
 
-	cmw := middleware.CacheMiddleware{Storage: s}
+	cmw := middleware.CacheMiddleware{Storage: ms}
 	amw := middleware.ArtistMiddleware{Artists: artists}
 
 	r.Use(amw.Middleware, cmw.Middleware)

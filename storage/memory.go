@@ -1,4 +1,4 @@
-package memory
+package storage
 
 // Source: https://github.com/goenning/go-cache-demo/blob/master/cache/memory/cache.go
 
@@ -8,35 +8,35 @@ import (
 )
 
 // Item is a cached reference
-type Item struct {
+type item struct {
 	Content    []byte
 	Expiration int64
 }
 
 // Expired returns true if the item has expired.
-func (item Item) Expired() bool {
-	if item.Expiration == 0 {
+func (i item) Expired() bool {
+	if i.Expiration == 0 {
 		return false
 	}
-	return time.Now().UnixNano() > item.Expiration
+	return time.Now().UnixNano() > i.Expiration
 }
 
-//Storage mecanism for caching strings in memory
-type Storage struct {
-	items map[string]Item
+//Storage mechanism for caching strings in memory
+type MemoryStorage struct {
+	items map[string]item
 	mu    *sync.RWMutex
 }
 
 //NewStorage creates a new in memory storage
-func NewStorage() *Storage {
-	return &Storage{
-		items: make(map[string]Item),
+func NewMemoryStorage() *MemoryStorage {
+	return &MemoryStorage{
+		items: make(map[string]item),
 		mu:    &sync.RWMutex{},
 	}
 }
 
 //Get a cached content by key
-func (s Storage) Get(key string) []byte {
+func (s MemoryStorage) Get(key string) []byte {
 	s.mu.RLock()
 	defer s.mu.RUnlock()
 
@@ -49,11 +49,11 @@ func (s Storage) Get(key string) []byte {
 }
 
 //Set a cached content by key
-func (s Storage) Set(key string, content []byte, duration time.Duration) {
+func (s MemoryStorage) Set(key string, content []byte, duration time.Duration) {
 	s.mu.Lock()
 	defer s.mu.Unlock()
 
-	s.items[key] = Item{
+	s.items[key] = item{
 		Content:    content,
 		Expiration: time.Now().Add(duration).UnixNano(),
 	}

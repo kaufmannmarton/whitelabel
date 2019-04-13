@@ -1,12 +1,15 @@
 package handler
 
 import (
+	"log"
 	"net/http"
 	"whitelabel/api"
 	"whitelabel/models"
 )
 
 func IndexHandler(w http.ResponseWriter, r *http.Request) {
+	log.Println("Index handler")
+
 	a := r.Context().Value("artist").(*models.Artist)
 
 	if a.PornhubID != nil {

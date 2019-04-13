@@ -5,11 +5,11 @@ import (
 	"net/http/httptest"
 	"strings"
 	"time"
-	"whitelabel/storage/memory"
+	"whitelabel/storage"
 )
 
 type CacheMiddleware struct {
-	Storage *memory.Storage
+	Storage *storage.MemoryStorage
 }
 
 func (m CacheMiddleware) Middleware(next http.Handler) http.Handler {
