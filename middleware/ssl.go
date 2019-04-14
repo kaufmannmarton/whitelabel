@@ -1,5 +1,7 @@
 package middleware
 
+// Source: https://github.com/jonahgeorge/force-ssl-heroku/blob/master/force-ssl-heroku.go
+
 import (
 	"net/http"
 	"os"
