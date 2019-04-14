@@ -46,16 +46,7 @@ func main() {
 }
 
 func loadArtists() (artists map[string]*models.Artist) {
-	fn := "artists.local.json"
-
-	// If artists.local.json exists use that, otherwise default to artists.json
-	_, err := os.Stat(fn)
-
-	if err != nil && os.IsNotExist(err) {
-		fn = "artists.json"
-	}
-
-	b, err := ioutil.ReadFile(fn)
+	b, err := ioutil.ReadFile("artists.json")
 
 	if err != nil {
 		panic(err)
