@@ -23,11 +23,9 @@ func main() {
 	r.HandleFunc("/contact", handler.ContactHandler).Methods("GET")
 	r.PathPrefix("/static/").HandlerFunc(handler.FileHandler).Methods("GET")
 
-	// smw := middleware.SSLMiddleware{}
 	amw := middleware.ArtistMiddleware{Artists: artists}
 	cmw := middleware.CacheMiddleware{Storage: ms}
 
-	// r.Use(smw.Middleware, amw.Middleware, cmw.Middleware)
 	r.Use(amw.Middleware, cmw.Middleware)
 
 	http.Handle("/", r)
