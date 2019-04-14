@@ -3,6 +3,7 @@ package middleware
 import (
 	"context"
 	"net/http"
+	"os"
 	"regexp"
 	"whitelabel/models"
 )
@@ -13,7 +14,11 @@ type ArtistMiddleware struct {
 
 func (m ArtistMiddleware) Middleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		artistID := getArtistIDFromHost(r.Host)
+		artistID := os.Getenv("ARTIST")
+
+		if artistID == "" {
+			artistID = getArtistIDFromHost(r.Host)
+		}
 
 		if a, found := m.Artists[artistID]; found {
 			ctx := context.WithValue(r.Context(), "artist", a)
