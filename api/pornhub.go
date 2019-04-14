@@ -14,8 +14,16 @@ func GetLatestPornhubVideos(pornhubID string) ([]models.Video, error) {
 	return getPornhubVideos(pornhubBaseURL + "?ordering=newest&phrase[]=" + pornhubID)
 }
 
+func GetLatestPornhubVideosByTag(pornhubTag string) ([]models.Video, error) {
+	return getPornhubVideos(pornhubBaseURL + "?ordering=newest&tags[]=" + pornhubTag)
+}
+
 func GetMostViewedPornhubVideos(pornhubID string) ([]models.Video, error) {
 	return getPornhubVideos(pornhubBaseURL + "?ordering=mostviewed&phrase[]=" + pornhubID)
+}
+
+func GetMostViewedPornhubVideosByTag(pornhubTag string) ([]models.Video, error) {
+	return getPornhubVideos(pornhubBaseURL + "?mostviewed=newest&tags[]=" + pornhubTag)
 }
 
 func getPornhubVideos(url string) ([]models.Video, error) {

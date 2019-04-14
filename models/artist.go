@@ -24,12 +24,10 @@ type Artist struct {
 	XHamster   *string `json:"xhamster"`
 	XVideos    *string `json:"xvideos"`
 	Clips4Sale *string `json:"clips4sale"`
+	YouPorn    *string `json:"youporn"`
 
 	Pornhub       *string `json:"pornhub"`
 	PornhubID     *string `json:"pornhub-id"`
+	PornhubTag    *string `json:"pornhub-tag"`
 	PornhubVideos []Video
-
-	YouPorn       *string `json:"youporn"`
-	YouPornID     *string `json:"youporn-id"`
-	YouPornVideos []Video
 }
