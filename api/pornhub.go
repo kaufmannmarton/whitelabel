@@ -10,20 +10,20 @@ import (
 
 const pornhubBaseURL = "http://www.pornhub.com/webmasters/search"
 
-func GetLatestPornhubVideos(pornhubID string) ([]models.Video, error) {
-	return getPornhubVideos(pornhubBaseURL + "?ordering=newest&phrase[]=" + pornhubID)
+func GetLatestPornhubVideos(id string) ([]models.Video, error) {
+	return getPornhubVideos(pornhubBaseURL + "?ordering=newest&phrase[]=" + id)
 }
 
-func GetLatestPornhubVideosByTag(pornhubTag string) ([]models.Video, error) {
-	return getPornhubVideos(pornhubBaseURL + "?ordering=newest&tags[]=" + pornhubTag)
+func GetLatestPornhubVideosByTag(tag string) ([]models.Video, error) {
+	return getPornhubVideos(pornhubBaseURL + "?ordering=newest&tags[]=" + tag)
 }
 
-func GetMostViewedPornhubVideos(pornhubID string) ([]models.Video, error) {
-	return getPornhubVideos(pornhubBaseURL + "?ordering=mostviewed&phrase[]=" + pornhubID)
+func GetMostViewedPornhubVideos(id string) ([]models.Video, error) {
+	return getPornhubVideos(pornhubBaseURL + "?ordering=mostviewed&phrase[]=" + id)
 }
 
-func GetMostViewedPornhubVideosByTag(pornhubTag string) ([]models.Video, error) {
-	return getPornhubVideos(pornhubBaseURL + "?mostviewed=newest&tags[]=" + pornhubTag)
+func GetMostViewedPornhubVideosByTag(tag string) ([]models.Video, error) {
+	return getPornhubVideos(pornhubBaseURL + "?mostviewed=newest&tags[]=" + tag)
 }
 
 func getPornhubVideos(url string) ([]models.Video, error) {
