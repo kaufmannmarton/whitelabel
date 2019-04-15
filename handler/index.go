@@ -23,6 +23,14 @@ func IndexHandler(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
+	if a.ManyVids != nil {
+		videos, err := api.GetLatestManyvidsVideos(*a.ManyVids)
+
+		if err == nil {
+			a.ManyVidsVideos = videos[0:9]
+		}
+	}
+
 	tmpl := renderTemplate("index.html")
 
 	err := tmpl.ExecuteTemplate(w, "layout", struct {

@@ -35,6 +35,35 @@
 </article>
 {{end}}
 
+{{if .Artist.ManyVidsVideos}}
+<article class="container md:px-0 px-3 mx-auto mt-8">
+    <header class="text-4xl mx-auto mb-6 text-lobster">
+        <a class="no-underline text-grey-darkest" href="{{.Artist.ManyVids}}" rel="noopener" target="_blank"
+            aria-label="Visit manyvids page">Manyvids</a>
+    </header>
+    <section
+        style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr) [col-start]); grid-column-gap: 40px; grid-row-gap: 60px;">
+        {{range .Artist.ManyVidsVideos}}
+        <div class="overflow-hidden">
+            <a class="no-underline" href="{{.URL}}" target="_blank" aria-label="{{ .Title }}">
+                <img alt="{{.Title}}" data-src="{{ .Thumb }}" class="lazyload w-full" />
+            </a>
+            <div class="py-4">
+                <a href="{{.URL}}" target="_blank" aria-label="{{ .Title }}"
+                    class="font-bold text-xl text-grey-darkest no-underline">{{ .Title }}</a>
+            </div>
+        </div>
+        {{end}}
+    </section>
+    <section class="flex justify-center mt-8">
+        <a href="{{.Artist.ManyVids}}" rel="noopener" target="_blank"
+            class="no-underline bg-transparent hover:bg-pink text-pink font-semibold hover:text-white inline-block text-xl py-3 px-5 border border-pink hover:border-transparent rounded">
+            View more
+        </a>
+    </section>
+</article>
+{{end}}
+
 <article id="photo-container" class="container md:px-0 px-3 mx-auto mt-8">
     <header class="text-4xl text-grey-darkest mx-auto mb-6 text-lobster">
         {{if .Artist.Instagram}}
