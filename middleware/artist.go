@@ -31,7 +31,7 @@ func (m ArtistMiddleware) Middleware(next http.Handler) http.Handler {
 }
 
 func getArtistIDFromHost(host string) string {
-	re := regexp.MustCompile(`(?m)((www\.|)(.*))\.com`)
+	re := regexp.MustCompile(`(?m)((www\.|)(.*))\.`)
 
 	m := re.FindStringSubmatch(host)
 
