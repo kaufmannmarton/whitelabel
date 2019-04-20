@@ -2,6 +2,8 @@ package handler
 
 import (
 	"net/http"
+	"path/filepath"
+	"text/template"
 	"whitelabel/api"
 	"whitelabel/models"
 
@@ -32,5 +34,16 @@ func RedirectHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	http.Redirect(w, r, video.URL, http.StatusSeeOther)
+	redirect := filepath.Join("static", "templates", "redirect.html")
+	tmpl := template.Must(template.ParseFiles(redirect))
+
+	err = tmpl.ExecuteTemplate(w, "redirect", struct {
+		URL string
+	}{
+		URL: video.URL,
+	})
+
+	if err != nil {
+		panic(err)
+	}
 }
