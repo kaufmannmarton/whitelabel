@@ -21,6 +21,7 @@ func main() {
 
 	r.HandleFunc("/", handler.IndexHandler).Methods("GET")
 	r.HandleFunc("/contact", handler.ContactHandler).Methods("GET")
+	r.HandleFunc("/r/{site}/{id}", handler.RedirectHandler).Methods("GET")
 	r.PathPrefix("/static/").HandlerFunc(handler.FileHandler).Methods("GET")
 
 	amw := middleware.ArtistMiddleware{Artists: artists}
