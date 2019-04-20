@@ -1,12 +1,12 @@
 {{define "body"}}
+
 {{if .Artist.PornhubVideos}}
 <article class="container md:px-0 px-3 mx-auto mt-8">
     <header class="text-4xl mx-auto mb-6 text-lobster">
         <a class="no-underline text-grey-darkest" href="{{.Artist.Pornhub}}" rel="noopener" target="_blank"
             aria-label="Visit pornhub page">Pornhub</a>
     </header>
-    <section
-        style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr) [col-start]); grid-column-gap: 40px; grid-row-gap: 60px;">
+    <section class="card-grid">
         {{range .Artist.PornhubVideos}}
         <div class="rounded overflow-hidden shadow">
             <a class="no-underline" href="{{.URL}}" target="_blank" aria-label="{{ .Title }}">
@@ -41,8 +41,7 @@
         <a class="no-underline text-grey-darkest" href="{{.Artist.ManyVids}}" rel="noopener" target="_blank"
             aria-label="Visit manyvids page">Manyvids</a>
     </header>
-    <section
-        style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr) [col-start]); grid-column-gap: 40px; grid-row-gap: 60px;">
+    <section class="card-grid">
         {{range .Artist.ManyVidsVideos}}
         <div class="overflow-hidden">
             <a class="no-underline" href="{{.URL}}" target="_blank" aria-label="{{ .Title }}">
@@ -73,8 +72,7 @@
         Photos
         {{end}}
     </header>
-    <section
-        style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr) [col-start]); grid-column-gap: 40px; grid-row-gap: 60px;">
+    <section class="card-grid">
         {{range $image := .Artist.Images}}
         <img alt="{{$.Artist.Name}}" data-src="{{ $image }}" class="lazyload w-full" />
         {{end}}
@@ -119,71 +117,61 @@
     <section class="flex flex-wrap justify-center">
         {{if .Artist.Fancentro}}
         <a href="{{.Artist.Fancentro}}" rel="noopener" target="_blank" class="no-underline">
-            <img alt="Visit fancentro page" style="width: 240px; height: 120px; object-fit: contain;"
-                data-src="/static/images/banners/fancentro.webp" class="lazyload" />
+            <img alt="Visit fancentro page" data-src="/static/images/banners/fancentro.webp" class="lazyload banner" />
         </a>
         {{end}}
 
         {{if .Artist.ManyVids}}
         <a href="{{.Artist.ManyVids}}" rel="noopener" target="_blank" class="no-underline">
-            <img alt="Visit manyvids page" style="width: 240px; height: 120px; object-fit: contain;"
-                data-src="/static/images/banners/manyvids.webp" class="lazyload" />
+            <img alt="Visit manyvids page" data-src="/static/images/banners/manyvids.webp" class="lazyload banner" />
         </a>
         {{end}}
 
         {{if .Artist.Modelhub}}
         <a href="{{.Artist.Modelhub}}" rel="noopener" target="_blank" class="no-underline">
-            <img alt="Visit modelhub page" style="width: 240px; height: 120px; object-fit: contain;"
-                data-src="/static/images/banners/modelhub.webp" class="lazyload" />
+            <img alt="Visit modelhub page" data-src="/static/images/banners/modelhub.webp" class="lazyload banner" />
         </a>
         {{end}}
 
         {{if .Artist.Pornhub}}
         <a href="{{.Artist.Pornhub}}" rel="noopener" target="_blank" class="no-underline">
-            <img alt="Visit pornhub page" style="width: 240px; height: 120px; object-fit: contain;"
-                data-src="/static/images/banners/pornhub.webp" class="lazyload" />
+            <img alt="Visit pornhub page" data-src="/static/images/banners/pornhub.webp" class="lazyload banner" />
         </a>
         {{end}}
 
         {{if .Artist.YouPorn}}
         <a href="{{.Artist.YouPorn}}" rel="noopener" target="_blank" class="no-underline">
-            <img alt="Visit youporn page" style="width: 240px; height: 120px; object-fit: contain;"
-                data-src="/static/images/banners/youporn.webp" class="lazyload" />
+            <img alt="Visit youporn page" data-src="/static/images/banners/youporn.webp" class="lazyload banner" />
         </a>
         {{end}}
 
         {{if .Artist.RedTube}}
         <a href="{{.Artist.RedTube}}" rel="noopener" target="_blank" class="no-underline">
-            <img alt="Visit redtube page" style="width: 240px; height: 120px; object-fit: contain;"
-                data-src="/static/images/banners/redtube.webp" class="lazyload" />
+            <img alt="Visit redtube page" data-src="/static/images/banners/redtube.webp" class="lazyload banner" />
         </a>
         {{end}}
 
         {{if .Artist.OnlyFans}}
         <a href="{{.Artist.OnlyFans}}" rel="noopener" target="_blank" class="no-underline">
-            <img alt="Visit onlyfans page" style="width: 240px; height: 120px; object-fit: contain;"
-                data-src="/static/images/banners/onlyfans.webp" class="lazyload" />
+            <img alt="Visit onlyfans page" data-src="/static/images/banners/onlyfans.webp" class="lazyload banner" />
         </a>
         {{end}}
 
         {{if .Artist.Clips4Sale}}
         <a href="{{.Artist.Clips4Sale}}" rel="noopener" target="_blank" class="no-underline">
-            <img alt="Visit clips4sale page" style="width: 240px; height: 120px; object-fit: contain;"
-                data-src="/static/images/banners/clips4sale.webp" class="lazyload" />
+            <img alt="Visit clips4sale page" data-src="/static/images/banners/clips4sale.webp" class="lazyload banner" />
         </a>
         {{end}}
 
         {{if .Artist.XHamster}}
         <a href="{{.Artist.XHamster}}" rel="noopener" target="_blank" class="no-underline">
-            <img alt="Visit xhamster page" style="width: 240px; height: 120px; object-fit: contain;"
-                data-src="/static/images/banners/xhamster.webp" class="lazyload" />
+            <img alt="Visit xhamster page" data-src="/static/images/banners/xhamster.webp" class="lazyload banner" />
         </a>
         {{end}}
 
         {{if .Artist.XVideos}}
         <a href="{{.Artist.XVideos}}" rel="noopener" target="_blank" class="no-underline">
-            <img alt="Visit xvideos page" style="width: 240px; height: 120px; object-fit: contain;"
-                data-src="/static/images/banners/xvideos.webp" class="lazyload" />
+            <img alt="Visit xvideos page" data-src="/static/images/banners/xvideos.webp" class="lazyload banner" />
         </a>
         {{end}}
     </section>

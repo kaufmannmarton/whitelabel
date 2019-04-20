@@ -27,6 +27,30 @@
         .rtVideos {
             margin-right: -14px;
         }
+
+        .banner {
+            width: 240px;
+            height: 120px;
+            object-fit: contain;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr) [col-start]);
+            grid-column-gap: 40px;
+            grid-row-gap: 60px;
+        }
+
+        .header-image {
+            max-height: 650px;
+            object-fit: cover;
+        }
+
+        .header-text {
+            left: 0;
+            bottom: 8vw;
+            background-color: rgba(0, 0, 0, .7);
+        }
     </style>
 </head>
 
