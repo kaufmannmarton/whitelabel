@@ -17,17 +17,22 @@ import (
 func main() {
 	artists := loadArtists()
 	ms := storage.NewMemoryStorage()
-	r := mux.NewRouter()
-
-	r.HandleFunc("/", handler.IndexHandler).Methods("GET")
-	r.HandleFunc("/contact", handler.ContactHandler).Methods("GET")
-	r.HandleFunc("/r/{site}/{id}", handler.RedirectHandler).Methods("GET")
-	r.PathPrefix("/static/").HandlerFunc(handler.FileHandler).Methods("GET")
-
 	amw := middleware.ArtistMiddleware{Artists: artists}
 	cmw := middleware.CacheMiddleware{Storage: ms}
 
-	r.Use(amw.Middleware, cmw.Middleware)
+	r := mux.NewRouter()
+
+	artistRouter := r.PathPrefix("").Subrouter()
+	artistRouter.Use(amw.Middleware)
+
+	cacheRouter := artistRouter.PathPrefix("").Subrouter()
+	cacheRouter.Use(cmw.Middleware)
+	cacheRouter.HandleFunc("/", handler.IndexHandler).Methods("GET")
+	cacheRouter.HandleFunc("/contact", handler.ContactHandler).Methods("GET")
+	cacheRouter.PathPrefix("/static/").HandlerFunc(handler.FileHandler).Methods("GET")
+
+	redirectRouter := artistRouter.PathPrefix("/r").Subrouter()
+	redirectRouter.HandleFunc("/{site}/{id}", handler.RedirectHandler).Methods("GET")
 
 	http.Handle("/", r)
 
