@@ -1,8 +1,7 @@
 {{define "body"}}
-
 {{if .Artist.PornhubVideos}}
-<article class="container md:px-0 px-3 mx-auto mt-8">
-    <header class="text-4xl mx-auto mb-6 text-lobster">
+<article id="pornhub-container" class="container md:px-0 px-3 mx-auto mt-8">
+    <header class="text-3xl mx-auto mb-6 text-lobster">
         <a class="no-underline text-grey-darkest" href="{{.Artist.Pornhub}}" rel="noopener" target="_blank"
             aria-label="Visit pornhub page">Pornhub</a>
     </header>
@@ -36,8 +35,8 @@
 {{end}}
 
 {{if .Artist.ManyVidsVideos}}
-<article class="container md:px-0 px-3 mx-auto mt-8">
-    <header class="text-4xl mx-auto mb-6 text-lobster">
+<article id="manyvids-container" class="container md:px-0 px-3 mx-auto mt-8">
+    <header class="text-3xl mx-auto mb-6 text-lobster">
         <a class="no-underline text-grey-darkest" href="{{.Artist.ManyVids}}" rel="noopener" target="_blank"
             aria-label="Visit manyvids page">Manyvids</a>
     </header>
@@ -64,8 +63,8 @@
 {{end}}
 
 {{if .Artist.Clips4SaleVideos}}
-<article class="container md:px-0 px-3 mx-auto mt-8">
-    <header class="text-4xl mx-auto mb-6 text-lobster">
+<article id="clips4sale-container" class="container md:px-0 px-3 mx-auto mt-8">
+    <header class="text-3xl mx-auto mb-6 text-lobster">
         <a class="no-underline text-grey-darkest" href="{{.Artist.Clips4Sale}}" rel="noopener" target="_blank"
             aria-label="Visit clips4sale page">Clips4Sale</a>
     </header>
@@ -92,7 +91,7 @@
 {{end}}
 
 <article id="photo-container" class="container md:px-0 px-3 mx-auto mt-8">
-    <header class="text-4xl text-grey-darkest mx-auto mb-6 text-lobster">
+    <header class="text-3xl text-grey-darkest mx-auto mb-6 text-lobster">
         {{if .Artist.Instagram}}
         <a class="no-underline text-grey-darkest" href="{{.Artist.Instagram}}" rel="noopener" target="_blank"
             aria-label="Visit instagram page">Instagram</a>
@@ -116,8 +115,8 @@
 </article>
 
 {{if .Artist.Twitter}}
-<article class="container md:px-0 px-3 mx-auto mt-8">
-    <header class="text-4xl mx-auto mb-6 text-lobster">
+<article id="twitter-container" class="container md:px-0 px-3 mx-auto mt-8">
+    <header class="text-3xl mx-auto mb-6 text-lobster">
         <a class="no-underline text-grey-darkest" href="{{.Artist.Twitter}}" rel="noopener" target="_blank"
             aria-label="Visit twitter page">Twitter</a>
     </header>
@@ -139,8 +138,8 @@
 </article>
 {{end}}
 
-<article class="container md:px-0 px-3 mx-auto mt-8">
-    <header class="text-4xl text-grey-darkest mx-auto mb-6 text-lobster">Where to find me
+<article id="more-container" class="container md:px-0 px-3 mx-auto mt-8">
+    <header class="text-3xl text-grey-darkest mx-auto mb-6 text-lobster">Where to find me
     </header>
     <section class="flex flex-wrap justify-center">
         {{if .Artist.Fancentro}}
@@ -187,7 +186,8 @@
 
         {{if .Artist.Clips4Sale}}
         <a href="{{.Artist.Clips4Sale}}" rel="noopener" target="_blank" class="no-underline">
-            <img alt="Visit clips4sale page" data-src="/static/images/banners/clips4sale.webp" class="lazyload banner" />
+            <img alt="Visit clips4sale page" data-src="/static/images/banners/clips4sale.webp"
+                class="lazyload banner" />
         </a>
         {{end}}
 
