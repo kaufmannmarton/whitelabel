@@ -16,14 +16,13 @@ type Artist struct {
 	Twitter              *string `json:"twitter"`
 	TwitterPornhubWidget *string `json:"twitter-pornhub-widget"`
 
-	Fancentro  *string `json:"fancentro"`
-	OnlyFans   *string `json:"onlyfans"`
-	RedTube    *string `json:"redtube"`
-	Modelhub   *string `json:"modelhub"`
-	XHamster   *string `json:"xhamster"`
-	XVideos    *string `json:"xvideos"`
-	Clips4Sale *string `json:"clips4sale"`
-	YouPorn    *string `json:"youporn"`
+	Fancentro *string `json:"fancentro"`
+	OnlyFans  *string `json:"onlyfans"`
+	RedTube   *string `json:"redtube"`
+	Modelhub  *string `json:"modelhub"`
+	XHamster  *string `json:"xhamster"`
+	XVideos   *string `json:"xvideos"`
+	YouPorn   *string `json:"youporn"`
 
 	Pornhub       *string `json:"pornhub"`
 	PornhubID     *string `json:"pornhub-id"`
@@ -32,4 +31,7 @@ type Artist struct {
 
 	ManyVids       *string `json:"manyvids"`
 	ManyVidsVideos []Video
+
+	Clips4Sale       *string `json:"clips4sale"`
+	Clips4SaleVideos []Video
 }

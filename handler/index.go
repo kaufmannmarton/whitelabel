@@ -31,6 +31,14 @@ func IndexHandler(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
+	if a.Clips4Sale != nil {
+		videos, err := api.GetLatestClips4SaleVideos(*a.Clips4Sale)
+
+		if err == nil {
+			a.Clips4SaleVideos = videos[0:9]
+		}
+	}
+
 	tmpl := renderTemplate("index.html")
 
 	err := tmpl.ExecuteTemplate(w, "layout", struct {
