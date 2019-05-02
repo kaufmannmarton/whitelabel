@@ -41,6 +41,7 @@ func main() {
 		Addr:         ":" + os.Getenv("PORT"),
 		WriteTimeout: 15 * time.Second,
 		ReadTimeout:  15 * time.Second,
+		IdleTimeout:  45 * time.Second,
 	}
 
 	err := srv.ListenAndServe()
