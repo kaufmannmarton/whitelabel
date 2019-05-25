@@ -1,37 +1,37 @@
 {{define "header"}}
 <nav class="flex justify-between items-center sm:px-0 px-3 py-2 container mx-auto">
-    <a href="/" class="text-pink no-underline text-lobster text-4xl">{{.Artist.Name}}</a>
+    <a href="/" class="text-pink-400 no-underline text-lobster text-4xl">{{.Artist.Name}}</a>
     <div id="hamburger-icon" class="md:hidden block cursor-pointer">
-        <div class="w-8 h-1 bg-grey-darkest"></div>
-        <div class="w-8 h-1 bg-grey-darkest my-1"></div>
-        <div class="w-8 h-1 bg-grey-darkest"></div>
+        <div class="w-8 h-1 bg-gray-700"></div>
+        <div class="w-8 h-1 bg-gray-700 my-1"></div>
+        <div class="w-8 h-1 bg-gray-700"></div>
     </div>
     <section class="md:flex hidden">
         {{if .Artist.Pornhub}}
         <span data-container="pornhub-container"
-            class="py-3 px-3 text-md text-grey-darkest cursor-pointer">Pornhub</span>
+            class="py-3 px-3 text-md text-gray-700 cursor-pointer">Pornhub</span>
         {{end}}
         {{if .Artist.Clips4Sale}}
         <span data-container="clips4sale-container"
-            class="py-3 px-3 text-md text-grey-darkest cursor-pointer">Clips4Sale</span>
+            class="py-3 px-3 text-md text-gray-700 cursor-pointer">Clips4Sale</span>
         {{end}}
         {{if .Artist.ManyVids}}
         <span data-container="manyvids-container"
-            class="py-3 px-3 text-md text-grey-darkest cursor-pointer">ManyVids</span>
+            class="py-3 px-3 text-md text-gray-700 cursor-pointer">ManyVids</span>
         {{end}}
-        <span data-container="photo-container" class="py-3 px-3 text-md text-grey-darkest cursor-pointer">Photos</span>
+        <span data-container="photo-container" class="py-3 px-3 text-md text-gray-700 cursor-pointer">Photos</span>
         {{if .Artist.Twitter}}
         <span data-container="twitter-container"
-            class="py-3 px-3 text-md text-grey-darkest cursor-pointer">Twitter</span>
+            class="py-3 px-3 text-md text-gray-700 cursor-pointer">Twitter</span>
         {{end}}
-        <span data-container="more-container" class="py-3 px-3 text-md text-grey-darkest cursor-pointer">More</span>
-        <a href="/contact" class="no-underline py-3 px-3 text-md text-grey-darkest">Contact</a>
+        <span data-container="more-container" class="py-3 px-3 text-md text-gray-700 cursor-pointer">More</span>
+        <a href="/contact" class="no-underline py-3 px-3 text-md text-gray-700">Contact</a>
     </section>
 </nav>
 <header class="container mx-auto">
     <img alt="{{.Artist.Name}}" class="w-full header-image" srcset="{{.Artist.HeaderImage}}" />
 </header>
-<section class="bg-pink py-2 mb-6 container mx-auto flex justify-around flex-wrap">
+<section class="bg-pink-400 py-2 mb-6 container mx-auto flex justify-around flex-wrap">
     {{if .Artist.Twitter}}
     <a aria-label="Visit twitter page" href="{{.Artist.Twitter}}" rel="noopener" target="_blank" class="no-underline">
         <img alt="Twitter logo" width="32" src="/static/images/logos/twitter.webp" />

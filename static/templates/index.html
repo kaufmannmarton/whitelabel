@@ -2,7 +2,7 @@
 {{if .Artist.PornhubVideos}}
 <article id="pornhub-container" class="container md:px-0 px-3 mx-auto mt-8">
     <header class="text-3xl mx-auto mb-6 text-lobster">
-        <a class="no-underline text-grey-darkest" href="{{.Artist.Pornhub}}" rel="noopener" target="_blank"
+        <a class="no-underline text-gray-700" href="{{.Artist.Pornhub}}" rel="noopener" target="_blank"
             aria-label="Visit pornhub page">Pornhub</a>
     </header>
     <section class="card-grid">
@@ -13,11 +13,11 @@
             </a>
             <div class="px-6 py-4">
                 <a href="{{.URL}}" target="_blank" aria-label="{{ .Title }}"
-                    class="font-bold text-xl text-grey-darkest no-underline">{{ .Title }}</a>
+                    class="font-bold text-xl text-gray-700 no-underline">{{ .Title }}</a>
             </div>
             <div class="px-6 pb-4">
                 {{ range .Categories }}
-                <span class="inline-block bg-pink rounded-full px-3 py-1 text-sm font-semibold text-white mb-2 mr-2">
+                <span class="inline-block bg-pink-400 rounded-full px-3 py-1 text-sm font-semibold text-white mb-2 mr-2">
                     {{ .Name }}
                 </span>
                 {{ end }}
@@ -27,7 +27,7 @@
     </section>
     <section class="flex justify-center mt-8">
         <a href="{{.Artist.Pornhub}}" rel="noopener" target="_blank"
-            class="no-underline bg-transparent hover:bg-pink text-pink font-semibold hover:text-white inline-block text-xl py-3 px-5 border border-pink hover:border-transparent rounded">
+            class="no-underline bg-transparent hover:bg-pink-400 text-pink-400 font-semibold hover:text-white inline-block text-xl py-3 px-5 border border-pink hover:border-transparent rounded">
             View more
         </a>
     </section>
@@ -37,7 +37,7 @@
 {{if .Artist.ManyVidsVideos}}
 <article id="manyvids-container" class="container md:px-0 px-3 mx-auto mt-8">
     <header class="text-3xl mx-auto mb-6 text-lobster">
-        <a class="no-underline text-grey-darkest" href="{{.Artist.ManyVids}}" rel="noopener" target="_blank"
+        <a class="no-underline text-gray-700" href="{{.Artist.ManyVids}}" rel="noopener" target="_blank"
             aria-label="Visit manyvids page">Manyvids</a>
     </header>
     <section class="card-grid">
@@ -48,14 +48,14 @@
             </a>
             <div class="py-4">
                 <a href="{{.URL}}" target="_blank" aria-label="{{ .Title }}"
-                    class="font-bold text-xl text-grey-darkest no-underline">{{ .Title }}</a>
+                    class="font-bold text-xl text-gray-700 no-underline">{{ .Title }}</a>
             </div>
         </div>
         {{end}}
     </section>
     <section class="flex justify-center mt-8">
         <a href="{{.Artist.ManyVids}}" rel="noopener" target="_blank"
-            class="no-underline bg-transparent hover:bg-pink text-pink font-semibold hover:text-white inline-block text-xl py-3 px-5 border border-pink hover:border-transparent rounded">
+            class="no-underline bg-transparent hover:bg-pink-400 text-pink-400 font-semibold hover:text-white inline-block text-xl py-3 px-5 border border-pink hover:border-transparent rounded">
             View more
         </a>
     </section>
@@ -65,7 +65,7 @@
 {{if .Artist.Clips4SaleVideos}}
 <article id="clips4sale-container" class="container md:px-0 px-3 mx-auto mt-8">
     <header class="text-3xl mx-auto mb-6 text-lobster">
-        <a class="no-underline text-grey-darkest" href="{{.Artist.Clips4Sale}}" rel="noopener" target="_blank"
+        <a class="no-underline text-gray-700" href="{{.Artist.Clips4Sale}}" rel="noopener" target="_blank"
             aria-label="Visit clips4sale page">Clips4Sale</a>
     </header>
     <section class="card-grid">
@@ -76,14 +76,14 @@
             </a>
             <div class="py-4">
                 <a href="{{.URL}}" target="_blank" aria-label="{{ .Title }}"
-                    class="font-bold text-xl text-grey-darkest no-underline">{{ .Title }}</a>
+                    class="font-bold text-xl text-gray-700 no-underline">{{ .Title }}</a>
             </div>
         </div>
         {{end}}
     </section>
     <section class="flex justify-center mt-8">
         <a href="{{.Artist.Clips4Sale}}" rel="noopener" target="_blank"
-            class="no-underline bg-transparent hover:bg-pink text-pink font-semibold hover:text-white inline-block text-xl py-3 px-5 border border-pink hover:border-transparent rounded">
+            class="no-underline bg-transparent hover:bg-pink-400 text-pink-400 font-semibold hover:text-white inline-block text-xl py-3 px-5 border border-pink hover:border-transparent rounded">
             View more
         </a>
     </section>
@@ -91,9 +91,9 @@
 {{end}}
 
 <article id="photo-container" class="container md:px-0 px-3 mx-auto mt-8">
-    <header class="text-3xl text-grey-darkest mx-auto mb-6 text-lobster">
+    <header class="text-3xl text-gray-700 mx-auto mb-6 text-lobster">
         {{if .Artist.Instagram}}
-        <a class="no-underline text-grey-darkest" href="{{.Artist.Instagram}}" rel="noopener" target="_blank"
+        <a class="no-underline text-gray-700" href="{{.Artist.Instagram}}" rel="noopener" target="_blank"
             aria-label="Visit instagram page">Instagram</a>
         {{else}}
         Photos
@@ -107,7 +107,7 @@
     {{if .Artist.Instagram}}
     <section class="flex justify-center mt-8">
         <a href="{{.Artist.Instagram}}" rel="noopener" target="_blank" aria-label="Visit instagram page"
-            class="no-underline bg-transparent hover:bg-pink text-pink font-semibold hover:text-white inline-block text-xl py-3 px-5 border border-pink hover:border-transparent rounded">
+            class="no-underline bg-transparent hover:bg-pink-400 text-pink-400 font-semibold hover:text-white inline-block text-xl py-3 px-5 border border-pink hover:border-transparent rounded">
             View more
         </a>
     </section>
@@ -117,7 +117,7 @@
 {{if .Artist.Twitter}}
 <article id="twitter-container" class="container md:px-0 px-3 mx-auto mt-8">
     <header class="text-3xl mx-auto mb-6 text-lobster">
-        <a class="no-underline text-grey-darkest" href="{{.Artist.Twitter}}" rel="noopener" target="_blank"
+        <a class="no-underline text-gray-700" href="{{.Artist.Twitter}}" rel="noopener" target="_blank"
             aria-label="Visit twitter page">Twitter</a>
     </header>
     <section class="flex flex-wrap">
@@ -131,7 +131,7 @@
     </section>
     <section class="flex justify-center mt-8">
         <a href="{{.Artist.Twitter}}" rel="noopener" target="_blank" aria-label="Visit twitter page"
-            class="no-underline bg-transparent hover:bg-pink text-pink font-semibold hover:text-white inline-block text-xl py-3 px-5 border border-pink hover:border-transparent rounded">
+            class="no-underline bg-transparent hover:bg-pink-400 text-pink-400 font-semibold hover:text-white inline-block text-xl py-3 px-5 border border-pink hover:border-transparent rounded">
             View more
         </a>
     </section>
@@ -139,7 +139,7 @@
 {{end}}
 
 <article id="more-container" class="container md:px-0 px-3 mx-auto mt-8">
-    <header class="text-3xl text-grey-darkest mx-auto mb-6 text-lobster">Where to find me
+    <header class="text-3xl text-gray-700 mx-auto mb-6 text-lobster">Where to find me
     </header>
     <section class="flex flex-wrap justify-center">
         {{if .Artist.Fancentro}}
